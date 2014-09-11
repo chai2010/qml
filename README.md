@@ -9,9 +9,11 @@ Install
 Install `Go1.4` and `Qt5` and `GCC` or `MinGW` ([download here](http://tdm-gcc.tdragon.net/download)) at first,
 and then run these commands:
 
-1. `go get -d github.com/chai2010/qml.go`
-2. `go generate` and `go install`
-3. `go run hello.go`
+1. set `$(QTDIR)` and add `$(QTDIR)/bin` to `$(PATH)` 
+2. `go get -d github.com/chai2010/qml.go`
+3. `go generate` and `go install`
+4. `go run hello.go`
+
 
 Example
 =======
@@ -69,9 +71,13 @@ Rectangle {
 Screenshots
 ===========
 
-**Particle on Qt5/Win7/64bit**
+**Hello**
 
-[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/particle.png)](https://github.com/chai2010/qml.go/blob/master/examples/particle/main.go)
+[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/hello.jpg)](https://github.com/chai2010/qml.go/blob/master/examples/hello/main.go)
+
+**Particle**
+
+[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/particle.jpg)](https://github.com/chai2010/qml.go/blob/master/examples/particle/main.go)
 
 BUGS
 ====
