@@ -6,14 +6,13 @@ PkgDoc: [http://godoc.org/github.com/chai2010/qml.go](http://godoc.org/github.co
 Install
 =======
 
-Install `Go1.4` and `Qt5` and `GCC` or `MinGW` ([download here](http://tdm-gcc.tdragon.net/download)) at first,
-and then run these commands:
+Install `Go1.4` and `Qt5` and `GCC` or `MinGW` ([download here](http://tdm-gcc.tdragon.net/download)) at first.
+Then run these commands in `GCC` or `MSVC` environment:
 
 1. set `$(QTDIR)` and add `$(QTDIR)/bin` to `$(PATH)` 
 2. `go get -d github.com/chai2010/qml.go`
 3. `go generate` and `go install`
 4. `go run hello.go`
-
 
 Example
 =======
