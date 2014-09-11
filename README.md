@@ -142,26 +142,27 @@ Then, assuming Qt was installed under `C:\Qt5.2.1\`, set up the following enviro
 After reopening the msvc shell for the environment changes to take effect, this should work:
 
 	# download qml.v1
-	go get -d gopkg.in/qml.v1
+	go get -d github.com/chai2010/qml.go
 
 	# Go1.3: build shared library
-	cd gopkg.in/qml.v1/cpp && build_msvc.bat
-	cd gopkg.in/qml.v1/gl/2.0 && build_msvc.bat
+	cd github.com/chai2010/qml.go/cpp && build_msvc.bat
+	cd github.com/chai2010/qml.go/gl/2.0 && build_msvc.bat
 
 	# Go1.4: build shared library
-	go generate gopkg.in/qml.v1
-	go generate gopkg.in/qml.v1/gl/2.0
+	go generate github.com/chai2010/qml.go
+	go generate github.com/chai2010/qml.go/gl/2.0
 
 	# install pacakge
-	go install gopkg.in/qml.v1
-	go install gopkg.in/qml.v1/gl/2.0
+	go install github.com/chai2010/qml.go
+	go install github.com/chai2010/qml.go/gl/2.0
 
 Try to run `exmaples/*`.
 
 **Screenshot(Qt5.2/MSVC2012/64bit)**
 
-[![](https://raw.githubusercontent.com/chai2010/qml/v1/screenshot/windows/particle.png)](https://github.com/chai2010/qml/blob/v1/examples/particle/main.go)
+[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/particle.png)](https://github.com/chai2010/qml.go/blob/master/examples/particle/main.go)
 
+https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/particle.png
 
 Requirements everywhere else
 ----------------------------
