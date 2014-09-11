@@ -1,10 +1,12 @@
+// Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 #include <windows.h>
 
 #define protREAD  1
 #define protWRITE 2
 #define protEXEC  4
-
-extern "C" {
 
 int mprotect(void *addr, size_t len, int prot)
 {
@@ -12,7 +14,7 @@ int mprotect(void *addr, size_t len, int prot)
 	if (prot & protWRITE) {
 		wprot = PAGE_READWRITE;
 	} else if (prot & protREAD) {
-		wprot = PAGE_READ;
+		wprot = PAGE_READONLY;
 	}
 	if (prot & protEXEC) {
 		wprot <<= 4;
@@ -23,5 +25,3 @@ int mprotect(void *addr, size_t len, int prot)
 	}
 	return 0;
 }
-
-} // extern "C"
