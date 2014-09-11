@@ -1,13 +1,13 @@
 // +build !windows
 
-#include "cpp/capi.cpp"
-#include "cpp/govalue.cpp"
-#include "cpp/govaluetype.cpp"
-#include "cpp/idletimer.cpp"
-#include "cpp/connector.cpp"
+#include "./internal/goqml/capi.cpp"
+#include "./internal/goqml/govalue.cpp"
+#include "./internal/goqml/govaluetype.cpp"
+#include "./internal/goqml/idletimer.cpp"
+#include "./internal/goqml/connector.cpp"
 
-#include "cpp/moc_all.cpp"
+#include "./internal/goqml/moc_all.cpp"
 
 #ifdef _WIN32
-#include "cpp/mmemwin.cpp"
+#include "./internal/goqml/mmemwin.cpp"
 #endif

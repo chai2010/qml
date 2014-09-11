@@ -1,7 +1,7 @@
 #ifndef GOQML_CAPI_H_
 #define GOQML_CAPI_H_
 
-#include "./cpp/goqml.h"
+#include "./internal/goqml/goqml.h"
 
 #include <stdlib.h>
 

@@ -26,7 +26,7 @@ func TestRef(t *testing.T) {
 		chref := <-ch
 		for _, ref := range refs {
 			if chref == ref {
-				t.Fatalf("found duplicated ref: %d == %d", chref, ref)
+				t.Fatalf("qml.go/internal/cdata: found duplicated ref: %d == %d", chref, ref)
 			}
 		}
 		refs = append(refs, chref)
