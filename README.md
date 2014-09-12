@@ -74,13 +74,14 @@ Screenshots
 
 [![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/hello.jpg)](https://github.com/chai2010/qml.go/blob/master/examples/hello/main.go)
 
-**Particle**
-
-[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/particle.jpg)](https://github.com/chai2010/qml.go/blob/master/examples/particle/main.go)
-
 **Clocks**
 
 [![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/clocks.png)](https://github.com/chai2010/qml.go/blob/master/examples/clocks/main.go)
+
+**SameGame**
+
+[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/samegame.png)](https://github.com/chai2010/qml.go/tree/master/examples/samegame)
+
 
 BUGS
 ====
