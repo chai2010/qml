@@ -78,6 +78,10 @@ Screenshots
 
 [![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/particle.jpg)](https://github.com/chai2010/qml.go/blob/master/examples/particle/main.go)
 
+**Clocks**
+
+[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/clocks.png)](https://github.com/chai2010/qml.go/blob/master/examples/clocks/main.go)
+
 BUGS
 ====
 
