@@ -1,3 +1,6 @@
+
+#include "govalue.h"
+
 #include <private/qmetaobjectbuilder_p.h>
 
 #include <QtOpenGL/QtOpenGL>
@@ -7,33 +10,31 @@
 #include <QQmlEngine>
 #include <QDebug>
 
-#include "govalue.h"
-#include "goqml_private.h"
-
 class GoValueMetaObject : public QAbstractDynamicMetaObject
 {
 public:
-    GoValueMetaObject(QObject* value, GoAddr *addr, GoTypeInfo *typeInfo);
+	GoValueMetaObject(QObject* value, GoAddr *addr, GoTypeInfo *typeInfo);
 
-    void activatePropIndex(int propIndex);
+	void activatePropIndex(int propIndex);
 
 protected:
-    int metaCall(QMetaObject::Call c, int id, void **a);
+	int metaCall(QMetaObject::Call c, int id, void **a);
 
 private:
-    QObject *value;
-    GoAddr *addr;
-    GoTypeInfo *typeInfo;
+	QObject *value;
+	GoAddr *addr;
+	GoTypeInfo *typeInfo;
 };
 
-GoValueMetaObject::GoValueMetaObject(QObject *value, GoAddr *addr, GoTypeInfo *typeInfo)
-    : value(value), addr(addr), typeInfo(typeInfo)
+GoValueMetaObject::GoValueMetaObject(
+	QObject *value, GoAddr *addr, GoTypeInfo *typeInfo
+): value(value), addr(addr), typeInfo(typeInfo)
 {
-    //d->parent = static_cast<QAbstractDynamicMetaObject *>(priv->metaObject);
-    *static_cast<QMetaObject *>(this) = *metaObjectFor(typeInfo);
+	//d->parent = static_cast<QAbstractDynamicMetaObject *>(priv->metaObject);
+	*static_cast<QMetaObject*>(this) = *metaObjectFor(typeInfo);
 
-    QObjectPrivate *objPriv = QObjectPrivate::get(value);
-    objPriv->metaObject = this;
+	QObjectPrivate *objPriv = QObjectPrivate::get(value);
+	objPriv->metaObject = this;
 }
 
 int GoValueMetaObject::metaCall(QMetaObject::Call c, int idx, void **a)

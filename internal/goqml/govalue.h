@@ -1,5 +1,8 @@
-#ifndef GOVALUE_H
-#define GOVALUE_H
+
+#ifndef GOQML_GOVALUE_H_
+#define GOQML_GOVALUE_H_
+
+#include "goqml_private.h"
 
 // Unfortunatley we need access to private bits, because the
 // whole dynamic meta-object concept is sadly being hidden
@@ -9,48 +12,45 @@
 #include <QQuickPaintedItem>
 #include <QPainter>
 
-#include "goqml_private.h"
-
 class GoValueMetaObject;
 
 QMetaObject *metaObjectFor(GoTypeInfo *typeInfo);
 
 class GoValue : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    GoAddr *addr;
-    GoTypeInfo *typeInfo;
+	GoAddr *addr;
+	GoTypeInfo *typeInfo;
 
-    GoValue(GoAddr *addr, GoTypeInfo *typeInfo, QObject *parent);
-    virtual ~GoValue();
+	GoValue(GoAddr *addr, GoTypeInfo *typeInfo, QObject *parent);
+	virtual ~GoValue();
 
-    void activate(int propIndex);
+	void activate(int propIndex);
 
 private:
-    GoValueMetaObject *valueMeta;
+	GoValueMetaObject *valueMeta;
 };
 
 class GoPaintedValue : public QQuickPaintedItem
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    GoAddr *addr;
-    GoTypeInfo *typeInfo;
+	GoAddr *addr;
+	GoTypeInfo *typeInfo;
 
-    GoPaintedValue(GoAddr *addr, GoTypeInfo *typeInfo, QObject *parent);
-    virtual ~GoPaintedValue();
+	GoPaintedValue(GoAddr *addr, GoTypeInfo *typeInfo, QObject *parent);
+	virtual ~GoPaintedValue();
 
-    void activate(int propIndex);
+	void activate(int propIndex);
 
-    virtual void paint(QPainter *painter);
+	virtual void paint(QPainter *painter);
 
 private:
-    GoValueMetaObject *valueMeta;
+	GoValueMetaObject *valueMeta;
 };
 
-#endif // GOVALUE_H
+#endif // GOQML_GOVALUE_H_
 
-// vim:ts=4:sw=4:et:ft=cpp

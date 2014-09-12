@@ -1,7 +1,7 @@
-#ifndef CONNECTOR_H
-#define CONNECTOR_H
+#ifndef GOQML_CONNECTOR_H
+#define GOQML_CONNECTOR_H
 
-#include <stdint.h>
+#include "goqml_private.h"
 
 #include <QObject>
 #include <QMetaMethod>
@@ -10,52 +10,51 @@ class QQmlEngine;
 
 class Connector : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    public:
+public:
+	static Connector* New(
+		QObject *sender, QMetaMethod method,
+		QQmlEngine *engine, void *func, int argsLen
+	);
+	virtual ~Connector() {
+		hookSignalDisconnect(func);
+	}
 
-    Connector(QObject *sender, QMetaMethod method, QQmlEngine *engine, void *func, int argsLen)
-		: QObject(sender), engine(engine), method(method), func(func), argsLen(argsLen) {}
+public slots:
+	virtual void invoke() {
+		panicf("should never get called");
+	}
 
-    virtual ~Connector();
+protected:
+	Connector(QObject *sender, QMetaMethod method, QQmlEngine *engine, void *func, int argsLen)
+		:QObject(sender), engine(engine), method(method), func(func), argsLen(argsLen) {}
 
-    // MOC HACK: s/Connector::qt_metacall/Connector::standard_qt_metacall/
-    int standard_qt_metacall(QMetaObject::Call c, int idx, void **a);
-
-    public slots:
-
-    void invoke();
-
-    private:
-
-    QQmlEngine *engine;
-    QMetaMethod method;
-    void *func;
-    int argsLen;
+	QQmlEngine *engine;
+	QMetaMethod method;
+	void *func;
+	int argsLen;
 };
 
 class PlainObject : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 
-    Q_PROPERTY(QString plainType READ getPlainType)
-    Q_PROPERTY(void *plainAddr READ getPlainAddr)
+	Q_PROPERTY(QString plainType READ getPlainType)
+	Q_PROPERTY(void *plainAddr READ getPlainAddr)
 
-    QString plainType;
-    void *plainAddr;
+	QString plainType;
+	void *plainAddr;
 
-    public:
+public:
+	PlainObject(QObject *parent = 0): QObject(parent) {};
 
-    PlainObject(QObject *parent = 0)
-        : QObject(parent) {};
+	PlainObject(const char *plainType, void *plainAddr, QObject *parent = 0)
+		: QObject(parent), plainType(plainType), plainAddr(plainAddr) {};
 
-    PlainObject(const char *plainType, void *plainAddr, QObject *parent = 0)
-        : QObject(parent), plainType(plainType), plainAddr(plainAddr) {};
-
-    QString getPlainType() { return plainType; };
-    void *getPlainAddr() { return plainAddr; };
+	QString getPlainType() { return plainType; };
+	void *getPlainAddr() { return plainAddr; };
 };
 
-#endif // CONNECTOR_H
+#endif // GOQML_CONNECTOR_H
 
-// vim:ts=4:sw=4:et

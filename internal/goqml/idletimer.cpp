@@ -1,33 +1,27 @@
+
 #include "idletimer.h"
-#include "goqml_private.h"
-
 
 #if defined(_MSC_VER)
-#   include <Windows.h>
+#	include <Windows.h>
 #endif
 
-void idleTimerInit(int32_t *guiIdleRun)
-{
-    IdleTimer::singleton()->init(guiIdleRun);
+void idleTimerInit(int32_t *gui_idle_run) {
+	IdleTimer::singleton()->init(gui_idle_run);
 }
 
-void idleTimerStart()
-{
-    QMetaObject::invokeMethod(IdleTimer::singleton(), "start", Qt::QueuedConnection);
+void idleTimerStart() {
+	QMetaObject::invokeMethod(IdleTimer::singleton(), "start", Qt::QueuedConnection);
 }
 
-    void IdleTimer::timerEvent(QTimerEvent *event)
-    {
+void IdleTimer::timerEvent(QTimerEvent *event) {
 #if defined(_MSC_VER)
-        MemoryBarrier();
+	MemoryBarrier();
 #else
-        __sync_synchronize();
+	__sync_synchronize();
 #endif
-        if (*guiIdleRun > 0) {
-            hookIdleTimer();
-        } else {
-            timer.stop();
-        }
-    }
-
-// vim:ts=4:sw=4:et:ft=cpp
+	if(*gui_idle_run_ > 0) {
+		hookIdleTimer();
+	} else {
+		timer.stop();
+	}
+}

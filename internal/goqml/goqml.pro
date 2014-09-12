@@ -11,16 +11,16 @@ TARGET   = goqml
 DESTDIR = $${PWD}
 INCLUDEPATH += .
 
-
-# MOC HACK
-# HEADERS += ./connector.h
-# HEADERS += ./govalue.h
-# HEADERS += ./idletimer.h
-SOURCES += ./moc_all.cpp
-
+HEADERS += ./connector.h
 SOURCES += ./connector.cpp
+
+HEADERS += ./govalue.h
 SOURCES += ./govalue.cpp
+
+HEADERS += ./govaluetype.h
 SOURCES += ./govaluetype.cpp
+
+HEADERS += ./idletimer.h
 SOURCES += ./idletimer.cpp
 
 HEADERS += ./goqml.h

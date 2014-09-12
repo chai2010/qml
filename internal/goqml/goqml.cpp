@@ -599,7 +599,7 @@ error *objectConnect(QObject_ *object, const char *signal, int signalLen, QQmlEn
                         // TODO Might continue looking to see if a different signal has the same name and enough arguments.
                         return errorf("signal \"%s\" has too few parameters for provided function", name.constData());
                     }
-                    Connector *connector = new Connector(qobject, method, qengine, func, argsLen);
+					Connector *connector = Connector::New(qobject, method, qengine, func, argsLen);
                     const QMetaObject *connmeta = connector->metaObject();
                     QObject::connect(qobject, method, connector, connmeta->method(connmeta->methodOffset()));
                     return 0;
