@@ -16,6 +16,11 @@ Then run these commands in `GCC` or `MSVC` environment:
 3. `go generate` and `go install`
 4. `go run hello.go`
 
+
+**Note for windows user**
+
+If use Go1.3, should run `cmd /c call internal\goqml\build_msvc.bat` istead of `go generate`.
+
 Example
 =======
 
