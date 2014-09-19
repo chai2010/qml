@@ -19,7 +19,13 @@ Then run these commands in `GCC` or `MSVC` environment:
 
 **Note for windows user**
 
-If use Go1.3, should run `cmd /c call internal\goqml\build_msvc.bat` istead of `go generate`.
+If use Go1.3, should run `cmd /c call internal\goqml\build_msvc.bat`(windows) or `cd internal/goqml && make -f Makefile.posix` istead of `go generate`.
+
+See:
+
+- http://tip.golang.org/cmd/go/#hdr-Generate_Go_files_by_processing_source
+- https://github.com/chai2010/qml.go/blob/master/generate_windows.go
+- https://github.com/chai2010/qml.go/blob/master/generate_generic.go
 
 Example
 =======
