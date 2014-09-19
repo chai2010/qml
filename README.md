@@ -6,7 +6,9 @@ PkgDoc: [http://godoc.org/github.com/chai2010/qml.go](http://godoc.org/github.co
 Install
 =======
 
-Install `Go1.4` and `Qt5` and `GCC` or `MinGW` ([download here](http://tdm-gcc.tdragon.net/download)) at first.
+Install `Go1.4` and `Qt5` and `GCC` ([`MinGW` [download here](http://tdm-gcc.tdragon.net/download)) at first.
+If Qt5 is [`Visual Studio`](http://msdn.microsoft.com/en-us/vstudio/aa718325.aspx) version (windows only), also need install
+[`Visual Studio`](http://msdn.microsoft.com/en-us/vstudio/aa718325.aspx).
 Then run these commands in `GCC` or `MSVC` environment:
 
 1. set `$(QTDIR)` and add `$(QTDIR)/bin` to `$(PATH)` 
