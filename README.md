@@ -17,7 +17,7 @@ Then run these commands in `GCC` or `MSVC` environment:
 4. `go run hello.go`
 
 
-**Note for windows user**
+**Note**
 
 If use Go1.3, should run `cmd /c call internal\goqml\build_msvc.bat`(windows) or `cd internal/goqml && make -f Makefile.posix` istead of `go generate`.
 
