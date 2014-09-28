@@ -20,7 +20,7 @@ import (
 	"sync"
 	"unsafe"
 
-	"gopkg.in/qml.v1/gl/glbase"
+	"github.com/chai2010/qml/gl/glbase"
 )
 
 // Engine provides an environment for instantiating QML components.

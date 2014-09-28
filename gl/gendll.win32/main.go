@@ -39,6 +39,7 @@ func main() {
 		dirName := matches[i][:len(matches[i])-len("/funcs.h")]
 		processFuncsCpp(dirName)
 		processGlGo(dirName)
+		processGlGo_importPath(dirName)
 		generatePro(dirName)
 		generateDef(dirName)
 		generateBat(dirName)
@@ -83,6 +84,37 @@ func processGlGo(dirName string) {
 	newStr := "// #cgo !windows pkg-config: Qt5Core Qt5OpenGL\n// #cgo windows LDFLAGS: -L./goqgl -lgoqgl_{{.LibSuffix}}\n"
 
 	newStr = strings.Replace(newStr, "{{.LibSuffix}}", libSuffix(dirName), -1)
+
+	if *flagRevert {
+		data = bytes.Replace(data, []byte(newStr), []byte(oldStr), -1)
+		data, _ = format.Source(data)
+
+		err = ioutil.WriteFile(dirName+"/gl.go", data, 0666)
+		if err != nil {
+			log.Fatal("ioutil.WriteFile: ", err)
+		}
+		return
+	} else {
+		data = bytes.Replace(data, []byte(oldStr), []byte(newStr), -1)
+		data, _ = format.Source(data)
+
+		err = ioutil.WriteFile(dirName+"/gl.go", data, 0666)
+		if err != nil {
+			log.Fatal("ioutil.WriteFile: ", err)
+		}
+		return
+	}
+}
+
+func processGlGo_importPath(dirName string) {
+	data, err := ioutil.ReadFile(dirName + "/gl.go")
+	if err != nil {
+		log.Fatal("ioutil.ReadFile: ", err)
+	}
+	data, _ = format.Source(data)
+
+	oldStr := `"gopkg.in/qml.v1/gl/glbase"`
+	newStr := `"github.com/chai2010/qml/gl/glbase"`
 
 	if *flagRevert {
 		data = bytes.Replace(data, []byte(newStr), []byte(oldStr), -1)

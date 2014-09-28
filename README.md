@@ -1,7 +1,7 @@
 Go bindings for Qt5/QML
 =======================
 
-PkgDoc: [http://godoc.org/github.com/chai2010/qml.go](http://godoc.org/github.com/chai2010/qml.go)
+PkgDoc: [http://godoc.org/github.com/chai2010/qml](http://godoc.org/github.com/chai2010/qml)
 
 Install
 =======
@@ -12,7 +12,7 @@ If Qt5 is [`Visual Studio`](http://msdn.microsoft.com/en-us/vstudio/aa718325.asp
 Then run these commands in `GCC` or `MSVC` environment:
 
 1. set `$(QTDIR)` and add `$(QTDIR)/bin` to `$(PATH)` 
-2. `go get -d github.com/chai2010/qml.go`
+2. `go get -d github.com/chai2010/qml`
 3. `go generate` and `go install`
 4. `go run hello.go`
 
@@ -24,8 +24,8 @@ If use Go1.3, should run `cmd /c call internal\goqml\build_msvc.bat`(windows) or
 See:
 
 - http://tip.golang.org/cmd/go/#hdr-Generate_Go_files_by_processing_source
-- https://github.com/chai2010/qml.go/blob/master/generate_windows.go
-- https://github.com/chai2010/qml.go/blob/master/generate_generic.go
+- https://github.com/chai2010/qml/blob/master/generate_windows.go
+- https://github.com/chai2010/qml/blob/master/generate_generic.go
 
 Example
 =======
@@ -37,7 +37,7 @@ import (
 	"fmt"
 	"os"
 
-	qml "github.com/chai2010/qml.go"
+	"github.com/chai2010/qml"
 )
 
 func main() {
@@ -85,15 +85,15 @@ Screenshots
 
 **Hello**
 
-[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/hello.jpg)](https://github.com/chai2010/qml.go/blob/master/examples/hello/main.go)
+[![](https://raw.githubusercontent.com/chai2010/qml/master/screenshot/windows/hello.jpg)](https://github.com/chai2010/qml/blob/master/examples/hello/main.go)
 
 **Clocks**
 
-[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/clocks.png)](https://github.com/chai2010/qml.go/blob/master/examples/clocks/main.go)
+[![](https://raw.githubusercontent.com/chai2010/qml/master/screenshot/windows/clocks.png)](https://github.com/chai2010/qml/blob/master/examples/clocks/main.go)
 
 **SameGame**
 
-[![](https://raw.githubusercontent.com/chai2010/qml.go/master/screenshot/windows/samegame.png)](https://github.com/chai2010/qml.go/tree/master/examples/samegame)
+[![](https://raw.githubusercontent.com/chai2010/qml/master/screenshot/windows/samegame.png)](https://github.com/chai2010/qml/tree/master/examples/samegame)
 
 
 BUGS

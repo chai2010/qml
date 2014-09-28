@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	qml "github.com/chai2010/qml.go"
-	"github.com/chai2010/qml.go/gl/2.0"
+	"github.com/chai2010/qml"
+	"github.com/chai2010/qml/gl/2.0"
 )
 
 var filename = "gopher.qml"

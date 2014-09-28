@@ -7,9 +7,10 @@ import "C"
 import (
 	"bytes"
 	"encoding/binary"
-	"gopkg.in/qml.v1/cdata"
 	"reflect"
 	"unsafe"
+
+	"github.com/chai2010/qml/internal/cdata"
 )
 
 const pageSize = 4096

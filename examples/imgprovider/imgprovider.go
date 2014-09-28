@@ -6,7 +6,7 @@ import (
 	"image/png"
 	"os"
 
-	qml "github.com/chai2010/qml.go"
+	"github.com/chai2010/qml"
 )
 
 func main() {

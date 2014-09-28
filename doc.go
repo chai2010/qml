@@ -10,7 +10,7 @@
 // release, please hold on a bit and subscribe to the mailing list for news. It's
 // in a pretty good state, so it shall not take too long.
 //
-// See https://github.com/chai2010/qml.go for details.
+// See https://github.com/chai2010/qml for details.
 //
 //
 // Introduction
@@ -35,7 +35,7 @@
 // Some of these topics are covered below, and may also be observed in practice
 // in the following examples:
 //
-//   https://github.com/chai2010/qml.go/tree/master/examples
+//   https://github.com/chai2010/qml/tree/master/examples
 //
 //
 // Handling QML objects in Go
@@ -156,11 +156,11 @@
 // a Paint method such as:
 //
 //    func (p *Person) Paint(painter *qml.Painter) {
-//        // ... OpenGL calls with the github.com/chai2010/qml.go/gl/<VERSION> package ...
+//        // ... OpenGL calls with the github.com/chai2010/qml/gl/<VERSION> package ...
 //    }
 //
 // A simple example is available at:
 //
-//   https://github.com/chai2010/qml.go/tree/master/examples/painting
+//   https://github.com/chai2010/qml/tree/master/examples/painting
 //
 package qml

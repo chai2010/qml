@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	qml "github.com/chai2010/qml.go"
-	"github.com/chai2010/qml.go/gl/es2"
+	"github.com/chai2010/qml"
+	"github.com/chai2010/qml/gl/es2"
 )
 
 func main() {

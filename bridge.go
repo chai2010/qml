@@ -19,7 +19,7 @@ import (
 	"sync/atomic"
 	"unsafe"
 
-	"gopkg.in/qml.v1/cdata"
+	"github.com/chai2010/qml/internal/cdata"
 )
 
 var (
