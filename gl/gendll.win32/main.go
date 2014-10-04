@@ -200,7 +200,7 @@ EXPORTS
 	sort.Strings(funcs)
 
 	var b bytes.Buffer
-	fmt.Fprintf(&b, defHeader[1:])
+	fmt.Fprintf(&b, defHeader)
 	for _, s := range funcs {
 		fmt.Fprintf(&b, "\t%s\n", s)
 	}
