@@ -15,6 +15,8 @@ Then run these commands in `GCC` or `MSVC` environment:
 2. `go get -d github.com/chai2010/qml`
 3. `go generate` and `go install`
 4. `go run hello.go`
+ 
+Install `opengl-x.y`:  `go generate github.com/chai2010/qml/gl/x.y`.
 
 
 **Note**
