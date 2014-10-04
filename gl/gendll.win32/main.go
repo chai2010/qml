@@ -138,7 +138,10 @@ func processGlGo_importPath(dirName string) {
 }
 
 func generatePro(dirName string) {
-	var pro = `
+	var pro = `# Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
 TEMPLATE = lib
 CONFIG  += dll release
 CONFIG  -= embed_manifest_exe embed_manifest_dll
@@ -168,7 +171,10 @@ DEF_FILE+= ./goqgl.def
 }
 
 func generateDef(dirName string) {
-	var defHeader = `
+	var defHeader = `; Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
+; Use of this source code is governed by a BSD-style
+; license that can be found in the LICENSE file.
+
 LIBRARY goqgl_{{.LibSuffix}}.dll
 
 EXPORTS
@@ -207,7 +213,10 @@ EXPORTS
 }
 
 func generateBat(dirName string) {
-	var bat = `
+	var bat = `:: Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
+:: Use of this source code is governed by a BSD-style
+:: license that can be found in the LICENSE file.
+
 @echo off
 
 cd %~dp0
@@ -224,6 +233,7 @@ dlltool -dllname goqgl_{{.LibSuffix}}.dll --def goqgl.def --output-lib libgoqgl_
 :: install
 copy goqgl_{{.LibSuffix}}.dll %QTDIR%\bin
 `
+
 	bat = strings.Replace(bat, "{{.LibSuffix}}", libSuffix(dirName), -1)
 
 	if *flagRevert {
@@ -239,7 +249,10 @@ copy goqgl_{{.LibSuffix}}.dll %QTDIR%\bin
 }
 
 func supportGenCmd(dirName string) {
-	var gen = `
+	var gen = `// Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 //go:generate cmd /c call goqgl\build_msvc.bat
 
 package GL
