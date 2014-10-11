@@ -9,14 +9,14 @@ Install
 Install `Go1.4` and `Qt5` and `GCC` ([`MinGW` download here](http://tdm-gcc.tdragon.net/download)) at first.
 If Qt5 is [`Visual Studio`](http://msdn.microsoft.com/en-us/vstudio/aa718325.aspx) version (windows only), also need install
 [`Visual Studio`](http://msdn.microsoft.com/en-us/vstudio/aa718325.aspx).
-Then run these commands in `GCC` or `MSVC` environment:
+Then run these commands:
 
 1. set `$(QTDIR)` and add `$(QTDIR)/bin` to `$(PATH)` 
 2. `go get -d github.com/chai2010/qml`
 3. `go generate` and `go install`
 4. `go run hello.go`
  
-Install `opengl-x.y`:  `go generate github.com/chai2010/qml/gl/x.y`.
+Install `opengl-x.y`: `go generate github.com/chai2010/qml/gl/x.y`.
 
 
 **Note**
