@@ -42,7 +42,8 @@ func main() {
 		processGlGo_importPath(dirName)
 		generatePro(dirName)
 		generateDef(dirName)
-		generateBat(dirName)
+		generateBat_386(dirName)
+		generateBat_amd64(dirName)
 		supportGenCmd(dirName)
 		fmt.Printf("%s ok\n", matches[i])
 	}
@@ -212,7 +213,7 @@ EXPORTS
 	}
 }
 
-func generateBat(dirName string) {
+func generateBat_386(dirName string) {
 	var bat = `:: Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
 :: Use of this source code is governed by a BSD-style
 :: license that can be found in the LICENSE file.
@@ -222,16 +223,51 @@ func generateBat(dirName string) {
 cd %~dp0
 setlocal
 
+:: ----------------------------------------------------------------------------
+:: Setup MSVC
+
+:: VS2010
+if not "x%VS100COMNTOOLS%" == "x" (
+	echo Setup VS2010 Win32 ...
+	call "%VS100COMNTOOLS%\..\..\VC\vcvarsall.bat"
+	goto build
+)
+
+:: VS2012
+if not "x%VS110COMNTOOLS%" == "x" (
+	echo Setup VS2012 Win32 ...
+	call "%VS110COMNTOOLS%\..\..\VC\vcvarsall.bat"
+	goto build
+)
+
+:: VS2013
+if not "x%VS120COMNTOOLS%" == "x" (
+	echo Setup VS2013 Win32 ...
+	call "%VS120COMNTOOLS%\..\..\VC\vcvarsall.bat"
+	goto build
+)
+
+:build
+
+:: ----------------------------------------------------------------------------
 :: NMake: goqgl_{{.LibSuffix}}.dll
+
 qmake
 nmake clean
 nmake release
 
+:: ----------------------------------------------------------------------------
 :: MinGW: generate libgoqgl_{{.LibSuffix}}.a
+
 dlltool -dllname goqgl_{{.LibSuffix}}.dll --def goqgl.def --output-lib libgoqgl_{{.LibSuffix}}.a
 
+:: ----------------------------------------------------------------------------
 :: install
+
 copy goqgl_{{.LibSuffix}}.dll %QTDIR%\bin
+
+:: ----------------------------------------------------------------------------
+:: END
 `
 
 	bat = strings.Replace(bat, "{{.LibSuffix}}", libSuffix(dirName), -1)
@@ -242,7 +278,78 @@ copy goqgl_{{.LibSuffix}}.dll %QTDIR%\bin
 	}
 
 	os.MkdirAll(dirName+"/goqgl", 0666)
-	err := ioutil.WriteFile(dirName+"/goqgl/build_msvc.bat", []byte(bat), 0666)
+	err := ioutil.WriteFile(dirName+"/goqgl/build_msvc_386.bat", []byte(bat), 0666)
+	if err != nil {
+		log.Fatal("ioutil.WriteFile: ", err)
+	}
+}
+
+func generateBat_amd64(dirName string) {
+	var bat = `:: Copyright 2014 <chaishushan{AT}gmail.com>. All rights reserved.
+:: Use of this source code is governed by a BSD-style
+:: license that can be found in the LICENSE file.
+
+@echo off
+
+cd %~dp0
+setlocal
+
+:: ----------------------------------------------------------------------------
+:: Setup MSVC
+
+:: VS2010
+if not "x%VS100COMNTOOLS%" == "x" (
+	echo Setup VS2010 Win64 ...
+	call "%VS100COMNTOOLS%\..\..\VC\vcvarsall.bat" x86_amd64
+	goto build
+)
+
+:: VS2012
+if not "x%VS110COMNTOOLS%" == "x" (
+	echo Setup VS2012 Win64 ...
+	call "%VS110COMNTOOLS%\..\..\VC\vcvarsall.bat" x86_amd64
+	goto build
+)
+
+:: VS2013
+if not "x%VS120COMNTOOLS%" == "x" (
+	echo Setup VS2013 Win64 ...
+	call "%VS120COMNTOOLS%\..\..\VC\vcvarsall.bat" x86_amd64
+	goto build
+)
+
+:build
+
+:: ----------------------------------------------------------------------------
+:: NMake: goqgl_{{.LibSuffix}}.dll
+
+qmake
+nmake clean
+nmake release
+
+:: ----------------------------------------------------------------------------
+:: MinGW: generate libgoqgl_{{.LibSuffix}}.a
+
+dlltool -dllname goqgl_{{.LibSuffix}}.dll --def goqgl.def --output-lib libgoqgl_{{.LibSuffix}}.a
+
+:: ----------------------------------------------------------------------------
+:: install
+
+copy goqgl_{{.LibSuffix}}.dll %QTDIR%\bin
+
+:: ----------------------------------------------------------------------------
+:: END
+`
+
+	bat = strings.Replace(bat, "{{.LibSuffix}}", libSuffix(dirName), -1)
+
+	if *flagRevert {
+		os.RemoveAll(dirName + "/goqgl")
+		return
+	}
+
+	os.MkdirAll(dirName+"/goqgl", 0666)
+	err := ioutil.WriteFile(dirName+"/goqgl/build_msvc_amd64.bat", []byte(bat), 0666)
 	if err != nil {
 		log.Fatal("ioutil.WriteFile: ", err)
 	}
@@ -253,7 +360,7 @@ func supportGenCmd(dirName string) {
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-//go:generate cmd /c call goqgl\build_msvc.bat
+//go:generate cmd /c call goqgl\build_msvc_$GOARCH.bat
 
 package GL
 `
