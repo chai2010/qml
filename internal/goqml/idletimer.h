@@ -7,7 +7,6 @@
 #include <QBasicTimer>
 #include <QThread>
 #include <QDebug>
-#include <mutex>
 
 class IdleTimer : public QObject
 {
