@@ -29,7 +29,7 @@ type Engine struct {
 	values    map[interface{}]*valueFold
 	destroyed bool
 
-	imageProviders map[string]*func(providerId string, width, height int) image.Image
+	imageProviders map[string]*func(imageId string, width, height int) image.Image
 }
 
 var engines = make(map[unsafe.Pointer]*Engine)
@@ -43,7 +43,7 @@ func NewEngine() *Engine {
 	RunMain(func() {
 		engine.addr = C.newEngine(nil)
 		engine.engine = engine
-		engine.imageProviders = make(map[string]*func(providerId string, width, height int) image.Image)
+		engine.imageProviders = make(map[string]*func(imageId string, width, height int) image.Image)
 		engines[engine.addr] = engine
 		stats.enginesAlive(+1)
 	})
